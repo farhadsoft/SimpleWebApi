@@ -21,7 +21,8 @@ namespace SimpleWebApi.Controllers
         {
             return Ok(repository.GetAllProducts());
         }
-        [HttpGet("{id}")]
+
+        [HttpGet("{id:Guid}")]
         public IActionResult GetById(Guid id)
         {
             return Ok(repository.GetProductById(id));
@@ -34,12 +35,14 @@ namespace SimpleWebApi.Controllers
             repository.Create(product);
             return Created("/", product);
         }
+
         [HttpDelete("{id:Guid}")]
         public IActionResult Delete(Guid id)
         {
             repository.Delete(id);
             return Ok();
         }
+
         [HttpPut]
         public IActionResult Update(Product product)
         {
