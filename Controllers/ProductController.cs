@@ -31,7 +31,6 @@ namespace SimpleWebApi.Controllers
         [HttpPost]
         public IActionResult Create(Product product)
         {
-            product.Id = Guid.NewGuid();
             repository.Create(product);
             return Created("/", product);
         }
@@ -47,7 +46,7 @@ namespace SimpleWebApi.Controllers
         public IActionResult Update(Product product)
         {
             repository.Update(product);
-            return Ok();
+            return Ok(product);
         }
     }
 }

@@ -32,14 +32,13 @@ namespace SimpleWebApi.Repository
 
         public Product GetProductById(Guid id)
         {
-            return products.Where(x => x.Id == id).FirstOrDefault();
+            return products.Single(x => x.Id == id);
         }
 
         public void Update(Product product)
         {
-            products.Where(x => x.Id == product.Id)
-                    .Select(x => { x.Name = product.Name; return x; })
-                    .ToList();
+            var item = products.Single(x => x.Id == product.Id);
+            products.Add(item);
         }
     }
 }
